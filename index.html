@@ -1,8 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>ÑéÖ¤Âë</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>éªŒè¯ç </title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -47,37 +48,37 @@
 </head>
 <body>
 <div class="container">
-    <h1>ÑéÖ¤ÂëÑéÖ¤</h1>
+    <h1>éªŒè¯ç éªŒè¯</h1>
 
     <div class="input-group">
-        <label for="captchaInput">ÇëÊäÈëÑéÖ¤Âë£º</label>
-        <input type="text" id="captchaInput" placeholder="ÊäÈëÑéÖ¤Âë...">
+        <label for="captchaInput">è¯·è¾“å…¥éªŒè¯ç ï¼š</label>
+        <input type="text" id="captchaInput" placeholder="è¾“å…¥éªŒè¯ç ...">
     </div>
 
-    <p>ÑéÖ¤Âë£º<span id="captchaText"></span></p>
+    <p>éªŒè¯ç ï¼š<span id="captchaText"></span></p>
 
-    <button id="verifyBtn">ÑéÖ¤</button>
+    <button id="verifyBtn">éªŒè¯</button>
 
     <p id="message" class="error-message"></p>
 </div>
 
 <script>
-    var captcha = generateCaptcha(); // Éú³ÉÑéÖ¤Âë
-    document.getElementById('captchaText').textContent = captcha; // ÏÔÊ¾ÑéÖ¤Âë
+    var captcha = generateCaptcha(); // ç”ŸæˆéªŒè¯ç 
+    document.getElementById('captchaText').textContent = captcha; // æ˜¾ç¤ºéªŒè¯ç 
 
     document.getElementById('verifyBtn').addEventListener('click', function() {
         var userInput = document.getElementById('captchaInput').value;
         if (userInput === captcha) {
-            document.getElementById('message').textContent = "ÑéÖ¤Í¨¹ı£¡ÕıÔÚÌø×ª...";
+            document.getElementById('message').textContent = "éªŒè¯é€šè¿‡ï¼æ­£åœ¨è·³è½¬...";
             setTimeout(function() {
-                window.location.href = 'Ê×Ò³.html'; // ÑéÖ¤³É¹¦ºóÌø×ªµ½³É¹¦Ò³Ãæ
-            }, 1000); // ÑÓ³Ù1ÃëºóÌø×ª
+                window.location.href = 'é¦–é¡µ.html'; // éªŒè¯æˆåŠŸåè·³è½¬åˆ°æˆåŠŸé¡µé¢
+            }, 1000); // å»¶è¿Ÿ1ç§’åè·³è½¬
         } else {
-            document.getElementById('message').textContent = "ÑéÖ¤Âë´íÎó£¬ÇëÖØĞÂÊäÈë£¡";
+            document.getElementById('message').textContent = "éªŒè¯ç é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼";
         }
     });
 
-    // Éú³ÉËæ»úÑéÖ¤ÂëµÄº¯Êı
+    // ç”ŸæˆéšæœºéªŒè¯ç çš„å‡½æ•°
     function generateCaptcha() {
         var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var length = 6;
