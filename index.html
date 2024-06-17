@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>验证码</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+    }
+
+    .container {
+        background-color: #fff;
+        padding: 2em;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .input-group {
+        margin-bottom: 1em;
+    }
+
+    .input-group label {
+        display: block;
+        margin-bottom: 0.5em;
+        font-weight: bold;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 0.5em;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .error-message {
+        color: red;
+        margin-top: 0.5em;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>验证码验证</h1>
+
+    <div class="input-group">
+        <label for="captchaInput">请输入验证码：</label>
+        <input type="text" id="captchaInput" placeholder="输入验证码...">
+    </div>
+
+    <p>验证码：<span id="captchaText"></span></p>
+
+    <button id="verifyBtn">验证</button>
+
+    <p id="message" class="error-message"></p>
+</div>
+
+<script>
+    var captcha = generateCaptcha(); // 生成验证码
+    document.getElementById('captchaText').textContent = captcha; // 显示验证码
+
+    document.getElementById('verifyBtn').addEventListener('click', function() {
+        var userInput = document.getElementById('captchaInput').value;
+        if (userInput === captcha) {
+            document.getElementById('message').textContent = "验证通过！正在跳转...";
+            setTimeout(function() {
+                window.location.href = '首页.html'; // 验证成功后跳转到成功页面
+            }, 1000); // 延迟1秒后跳转
+        } else {
+            document.getElementById('message').textContent = "验证码错误，请重新输入！";
+        }
+    });
+
+    // 生成随机验证码的函数
+    function generateCaptcha() {
+        var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var length = 6;
+        var captcha = "";
+        for (var i = 0; i < length; i++) {
+            var randomIndex = Math.floor(Math.random() * chars.length);
+            captcha += chars[randomIndex];
+        }
+        return captcha;
+    }
+</script>
+</body>
+</html>

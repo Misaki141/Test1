@@ -1,0 +1,198 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>二次创作</title>
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #444;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 1em;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5em 1em;
+            display: block;
+        }
+
+        main {
+            display: flex;
+            justify-content: space-between;
+            padding: 1em;
+        }
+
+        .carousel {
+            position: relative;
+            width: 60%;
+            overflow: hidden;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slides img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .nav-btn {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            padding: 0.5em;
+            cursor: pointer;
+            margin: 0 0.2em;
+        }
+
+        .vertical-nav {
+            width: 20%;
+        }
+
+        .vertical-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .vertical-nav ul li {
+            margin: 0.5em 0;
+        }
+
+        .vertical-nav ul li a {
+            text-decoration: none;
+            color: #444;
+            padding: 0.5em;
+            display: block;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            let currentIndex = 0;
+            const slides = $('.slides img');
+            const totalSlides = slides.length;
+
+            function showSlide(index) {
+                const newLeft = -index * 100 + '%';
+                $('.slides').css('transform', 'translateX(' + newLeft + ')');
+                $('.nav-btn').removeClass('active');
+                $('.nav-btn').eq(index).addClass('active');
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                showSlide(currentIndex);
+            }
+
+            let slideInterval = setInterval(nextSlide, 3000);
+
+            $('.nav-btn').click(function() {
+                clearInterval(slideInterval);
+                currentIndex = $(this).data('index');
+                showSlide(currentIndex);
+                slideInterval = setInterval(nextSlide, 3000);
+            });
+
+            // JavaScript事件处理
+            $(document).keydown(function(e) {
+                if (e.key === 'ArrowLeft') {
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    showSlide(currentIndex);
+                } else if (e.key === 'ArrowRight') {
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                    showSlide(currentIndex);
+                }
+            });
+
+            $('nav ul li a').hover(function() {
+                $(this).css('background-color', '#555');
+            }, function() {
+                $(this).css('background-color', '');
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>怪物猎人</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="首页.html">首页</a></li>
+            <li><a href="二次创作.html">二次创作</a></li>
+            <li><a href="原型.html">原型</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section class="carousel">
+            <div class="slides">
+                <img src="DW\69.jpg" alt="图片1">
+                <img src="DW\08.jpg" alt="图片2">
+                <img src="DW\36.jpg" alt="图片3">
+                <img src="DW\81.jpg" alt="图片4">
+            </div>
+            <div class="navigation">
+                <span class="nav-btn" data-index="0">冥灯龙</span>
+                <span class="nav-btn" data-index="1">雷狼龙</span>
+                <span class="nav-btn" data-index="2">原初爵银龙</span>
+                <span class="nav-btn" data-index="3">合照</span>
+            </div>
+        </section>
+        <aside class="vertical-nav">
+            <ul>
+                <li><a href="DW\69.jpg">冥灯龙</a></li>
+                <li><a href="DW\08.jpg">雷狼龙</a></li>
+                <li><a href="DW\36.jpg">原初爵银龙</a></li>
+                <li><a href="DW\81.jpg">合照</a></li>
+            </ul>
+        </aside>
+    </main>
+    <footer>
+        <p>&copy; 2024 图片轮播网页. 版权所有.</p>
+    </footer>
+</body>
+</html>
